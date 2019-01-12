@@ -24,7 +24,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,9 +51,9 @@ import jadx.gui.update.JadxUpdate;
 import jadx.gui.update.JadxUpdate.IUpdateCallback;
 import jadx.gui.update.data.Release;
 import jadx.gui.utils.CacheObject;
+import jadx.gui.utils.JumpPosition;
 import jadx.gui.utils.Link;
 import jadx.gui.utils.NLS;
-import jadx.gui.utils.JumpPosition;
 import jadx.gui.utils.Utils;
 
 import static javax.swing.KeyStroke.getKeyStroke;
@@ -113,8 +115,18 @@ public class MainWindow extends JFrame {
 		resetCache();
 		initUI();
 		initMenuAndToolbar();
+		setWindowIcons();
 		applySettings();
 		checkForUpdate();
+	}
+
+	private void setWindowIcons() {
+		List<Image> icons = new ArrayList<>();
+		icons.add(Utils.openImage("/logos/jadx-logo-16px.png"));
+		icons.add(Utils.openImage("/logos/jadx-logo-32px.png"));
+		icons.add(Utils.openImage("/logos/jadx-logo-48px.png"));
+		icons.add(Utils.openImage("/logos/jadx-logo.png"));
+		setIconImages(icons);
 	}
 
 	private void applySettings() {
